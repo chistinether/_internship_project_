@@ -12,16 +12,14 @@ class Student(models.Model):
     supervisor_email = models.EmailField()
     phone_number = models.CharField(max_length=20)
     date_joined = models.DateField(auto_now_add=True)
+    student_email = models.EmailField()
 
-    def __str__(self):
-        return f"{self.user.get_full_name()} ({self.registration_number})"
 
 class Supervisor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.user.get_full_name()
+
 
 class Report(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -29,14 +27,9 @@ class Report(models.Model):
     content = models.TextField()
     submission_date = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Week {self.week_number} - {self.student}"
-
 class Feedback(models.Model):
     report = models.OneToOneField(Report, on_delete=models.CASCADE)
     supervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
     comments = models.TextField()
     date_given = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Feedback for {self.report}"
