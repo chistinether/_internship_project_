@@ -1,6 +1,7 @@
+import Welcome from "./Welcome";
+
 function App() {
-    return (
-    <h1> HELLO</h1>        
-    );
+  return <Welcome />;
 }
+
 export default App;
