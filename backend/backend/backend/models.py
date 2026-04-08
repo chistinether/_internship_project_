@@ -12,7 +12,7 @@ class Student(models.Model):
     supervisor_email = models.EmailField()
     phone_number = models.CharField(max_length=20)
     date_joined = models.DateField(auto_now_add=True)
-    first_name = models.CharField(max_length = 20)
+    
 
 
 class Supervisor(models.Model):
