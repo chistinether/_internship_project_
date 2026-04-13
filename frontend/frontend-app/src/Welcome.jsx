@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const pageStyle = {
     background: "linear-gradient(to right, #001f3f, #003366)",
@@ -58,7 +61,7 @@ function Welcome() {
       return;
     }
 
-    alert("Login successful (demo)");
+    navigate("/dashboard");
   };
 
   return (

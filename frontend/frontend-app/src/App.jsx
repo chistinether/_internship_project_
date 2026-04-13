@@ -1,8 +1,14 @@
-<h1> Welcome </h1>
+import { Routes, Route } from "react-router-dom";
 import Welcome from "./Welcome";
+import Dashboard from "./Dashboard";
 
 function App() {
-  return <Welcome />;
+  return (
+    <Routes>
+      <Route path="/" element={<Welcome />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  );
 }
 
 export default App;
