@@ -29,11 +29,6 @@ class Supervisor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.CharField(max_length=255)
 
-    def __str__(self):
-        return f"{self.user}- ({self.department})"
-
-
-
 class Report(models.Model):
     STATUS = (
         ('draft', 'Draft'),
