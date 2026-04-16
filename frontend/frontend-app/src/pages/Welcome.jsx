@@ -5,6 +5,7 @@ function Welcome() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [role, setRole] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -35,8 +36,7 @@ function Welcome() {
           boxShadow: "0 5px 20px rgba(0,0,0,0.2)"
         }}
       >
-        <h2 style={{ textAlign: "center" }}><pre>Welcome to
-                                                    ILES</pre> </h2>
+        <h1 style={{ textAlign: "center" }}>Welcome to ILES</h1>
 
         <input
           type="email"
@@ -68,13 +68,23 @@ function Welcome() {
             width: "100%",
             padding: 10,
             marginTop: 15,
-            background: "#0a192f",
+            background: "linear-gradient(to right, #36d1dc,#5b86e5)",
             color: "white",
             border: "none",
             cursor: "pointer"
           }}
         >
           Login
+          <select 
+          value = {role}
+          onChange={(e) => setRole(e.target.value)}
+          style = {{ width : "100%", padding: 10, marginTop: 10 }}
+          >
+            <option value="">Login as...</option>
+            <option value="student">Student</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="admin">Admin</option>
+          </select>
         </button>
         <p style = {{marginTop: 10, textAlign: "center"}}>
           <span style={{ cursor: "pointer" , color: "#0a192f"}}>
@@ -91,6 +101,14 @@ function Welcome() {
             </span>
         </p>
       </form>
+
+      <p style = {{ marginTop: 20, color: "white", textAlign: "center", fontSize: 12 }}>
+        Need help? Contact us;
+        <br />
+        Email: support@iles.com
+        <br />
+        Phone: +256 776 083 497
+      </p>
     </div>
   );
 }
