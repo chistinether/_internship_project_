@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Welcome() {
@@ -23,30 +23,50 @@ function Welcome() {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: "#001f3f",
-      color: "white"
+      background: "#0a192f"
     }}>
-      <form onSubmit={handleLogin} style={{ background: "white", padding: 20, color: "black" }}>
-        <h2>ILES Login</h2>
+      <form
+        onSubmit={handleLogin}
+        style={{
+          background: "white",
+          padding: 30,
+          borderRadius: 10,
+          width: 300,
+          boxShadow: "0 5px 20px rgba(0,0,0,0.2)"
+        }}
+      >
+        <h2 style={{ textAlign: "center" }}>ILES System</h2>
 
         <input
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          style={{ width: "100%", padding: 10, marginTop: 10 }}
         />
-
-        <br /><br />
 
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          style={{ width: "100%", padding: 10, marginTop: 10 }}
         />
 
-        <br /><br />
-
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: 10,
+            marginTop: 15,
+            background: "#0a192f",
+            color: "white",
+            border: "none",
+            cursor: "pointer"
+          }}
+        >
+          Login
+        </button>
       </form>
     </div>
   );
