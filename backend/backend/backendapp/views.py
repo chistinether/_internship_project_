@@ -21,13 +21,27 @@ class RegisterView(APIView):
                 {"error": "Username and password are required"},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
+        
         if User.objects.filter(username=username).exists():
             return Response(
                 {"error": "Username already exists"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+        
+        if email and "@" not in email:
+            return Response({"error": "Invalid email"})
+        
+        if len(password) < 6:
+            return Response({"error": "Password too short"}) 
 
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "Username already exists"})       
+
+        valid_roles = ["student", "supervisor"]
+
+        if role not in valid_roles:
+            return Response({"error": "Invalid role"})
+        
         user = User.objects.create_user(
             username=username,
             email=email,
