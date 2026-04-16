@@ -23,7 +23,7 @@ function Welcome() {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: "#0a192f"
+      background: "linear-gradient(to right, #0f2027,#203a43, #2c5364)"
     }}>
       <form
         onSubmit={handleLogin}
@@ -35,7 +35,8 @@ function Welcome() {
           boxShadow: "0 5px 20px rgba(0,0,0,0.2)"
         }}
       >
-        <h2 style={{ textAlign: "center" }}>ILES System</h2>
+        <h2 style={{ textAlign: "center" }}><pre>Welcome to
+                                                    ILES</pre> </h2>
 
         <input
           type="email"
