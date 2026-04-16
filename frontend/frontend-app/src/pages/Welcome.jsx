@@ -54,6 +54,14 @@ function Welcome() {
           style={{ width: "100%", padding: 10, marginTop: 10 }}
         />
 
+        <select
+          style={{ width: "100%", padding: 10, marginTop: 10 }}
+        >
+          <option value="">Login as...</option>
+          <option value="student">Student</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="admin">Admin</option>
+        </select>
         <button
           type="submit"
           style={{
