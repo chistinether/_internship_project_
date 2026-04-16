@@ -68,6 +68,20 @@ function Welcome() {
         >
           Login
         </button>
+        <p style = {{marginTop: 10, textAlign: "center"}}>
+          <span style={{ cursor: "pointer" , color: "#0a192f"}}>
+            Forgot Password?
+            </span>
+        </p>
+
+        <p style = {{textAlign: "center"}}>
+          Don't have an account?{" "}
+          <span style={{ cursor: "pointer" , color: "#0a192f" , fontWeight: "bold"}}
+            onClick={() => navigate("/Signup")}
+            >
+            Sign Up
+            </span>
+        </p>
       </form>
     </div>
   );
