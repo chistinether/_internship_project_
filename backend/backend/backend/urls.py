@@ -16,8 +16,7 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from backendapp.views import StudentViewSet, ReportViewSet, FeedbackViewSet, SupervisorViewSet
-
+from backendapp.views import StudentViewSet, FeedbackViewSet, ReportViewSet, SupervisorViewSet
 
 router = DefaultRouter()
 
