@@ -32,7 +32,7 @@ class SupervisorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ReportSerializer(serializers.ModelSerializer):
-    full_name = serializers.CharField(source='user.get_full_name', read_only=True)
+    full_name = serializers.CharField(source='student.user.get_full_name', read_only=True)
 
     class Meta:
         model = Report
@@ -52,7 +52,7 @@ class ReportSerializer(serializers.ModelSerializer):
         return value
 
 class FeedbackSerializer(serializers.ModelSerializer):
-    full_name = serializers.CharField(source='user.get_full_name', read_only=True)
+    full_name = serializers.CharField(source='supervisor.user.get_full_name', read_only=True)
 
     class Meta:
         model = Feedback
