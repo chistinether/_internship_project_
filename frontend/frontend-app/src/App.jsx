@@ -1,13 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
+import "./App.css";
+<div className= "container"> <h1>Internship Logging and Evaluation System</h1> </div>
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
+    <div className = "container">
+      <h1>Internship Logging and Evaluation System</h1>
+    </div>
   );
 }
 

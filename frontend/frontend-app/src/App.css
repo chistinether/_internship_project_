@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    background-color: #000000;
+    height: 100vh;
+    animation: bgShift 5s infinite alternate;
+}
+@keyframes bgShift {
+    0% {
+        background-color: #03092a;
+    }
+    50% {
+         background-color: #070f37;
+    }
+    100% {
+         background-color: #192359;}}
