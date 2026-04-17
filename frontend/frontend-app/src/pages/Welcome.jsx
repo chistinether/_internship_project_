@@ -10,7 +10,7 @@ function Welcome() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!email || !password || !role) {
       alert("Please fill in all fields");
       return;
     }
@@ -36,7 +36,7 @@ function Welcome() {
           boxShadow: "0 5px 20px rgba(0,0,0,0.2)"
         }}
       >
-        <h1 style={{ textAlign: "center" }}>Welcome to ILES</h1>
+        <h1 style={{ textAlign: "center", color: "black" }}>Welcome to ILES</h1>
 
         <input
           type="email"
@@ -60,7 +60,7 @@ function Welcome() {
             width: "100%",
             padding: 10,
             marginTop: 15,
-            background: "linear-gradient(to right, #36d1dc,#5b86e5)",
+            background: "linear-gradient(to right, #0f2027,#203a43, #2c5364)",
             color: "white",
             border: "none",
             cursor: "pointer"
