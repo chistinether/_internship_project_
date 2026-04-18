@@ -7,12 +7,16 @@ import "./App.css";
 function App() {
   return (
     <div className = "login-page">
+      <div className="welcome-text">
+        <h1>Welcome to</h1>
+        <h1>ILES</h1></div>
       <div className = "login-box">
         <h2>Login</h2>
 
         <form>
+          <label>Email:</label>
           <input type = "email" placeholder = "Email:" required />
-          <input type = "tel" placeholder = "Phone Number:" required />
+          <label>Password:</label>
           <input type = "password" placeholder = "Password:" required />
           
           <div className = "login-buttons">
