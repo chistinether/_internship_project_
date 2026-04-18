@@ -39,14 +39,35 @@ cursor: pointer;
 .login-page {
 height: 100vh;
 display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
+color: white;
 }
 
+.welcome-text{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-text h1{
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.login-box label{
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
 .login-box input{
+    width: 100%;
     padding: 10px;
     border-radius: 4px;
-    margin: 8px 0;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -65,7 +86,7 @@ align-items: center;
 }
 
 .extra-links {
-    margin-top: 10rem
+    margin-top: 1rem;
 
 }
 
