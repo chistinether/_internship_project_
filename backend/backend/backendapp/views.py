@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from .models import Student, Report, Feedback, Supervisor
 from .serializers import StudentSerializer, ReportSerializer,FeedbackSerializer, SupervisorSerializer
+from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 
@@ -105,6 +106,8 @@ User = get_user_model()
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
