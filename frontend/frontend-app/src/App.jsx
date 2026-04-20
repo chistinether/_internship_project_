@@ -2,9 +2,52 @@ import { Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
 import "./App.css";
+import DashboardLayout from "./components/DashboardLayout";
+import React, {useEffect, useState} from "react";
+import Navbar from "./components/Navbar";
+
+return(
 <div className= "container"> <h1>Internship Logging and Evaluation System</h1> </div>
+)
 
 function App() {
+  const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    fetch("/api/user")
+      .then(res =>{
+          if (!res.ok) {
+            throw new Error("Failed to fetch user data");
+      }
+      return res.json();
+      })
+      .then(data => {
+        setRole(data.role);
+        setLoading(false);})
+      .catch(err => {
+        console.error("Error fetching user data:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>  Loading...</p>;
+  
+  }
+
+  return(
+    <div>
+      <Navbar />
+      {role ?(
+        <DashboardLayout role = {role}/>
+      ) : (
+        <p>No role assigned.Please log in again</p>
+      )}
+    </div>
+  );
+
+
   return (
     <div className = "login-page">
       <div className="welcome-text">
@@ -46,5 +89,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
