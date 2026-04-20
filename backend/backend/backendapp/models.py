@@ -16,7 +16,7 @@ class Student(models.Model):
     course = models.CharField(max_length=100)
     year_of_study = models.IntegerField()
     internship_place = models.CharField(max_length=255)
-    supervisor_name = models.CharField(max_length=100)
+    supervisor_name = models.CharField(max_length=100, blank=False)
     supervisor_email = models.EmailField()
     phone_number = models.CharField(max_length=20)
     date_joined = models.DateField(auto_now_add=True)
@@ -34,8 +34,10 @@ class Supervisor(models.Model):
 
 class Report(models.Model):
     STATUS = (
-        ('draft', 'Draft'),
-        ('submitted', 'Submitted'),
+    ("pending", "Pending"),
+    ("approved", "Approved"),
+    ("rejected", "Rejected"),
+
     )
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     week_number = models.IntegerField()
