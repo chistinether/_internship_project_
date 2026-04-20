@@ -48,7 +48,11 @@ class Report(models.Model):
 
 
 
-
+class Feedback(models.Model):
+    report = models.OneToOneField(Report,on_delete=models.CASCADE)
+    supervisor = models.ForeignKey(Supervisor,on_delete=models.CASCADE)
+    comments = models.TextField()
+    date_given = models.DateField(auto_now_add=True)
 
 
 
