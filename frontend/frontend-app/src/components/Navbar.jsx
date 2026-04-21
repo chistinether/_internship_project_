@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <nav>
-      <h2>My App</h2>
+      <h2>Internship Logging and Evaluation System</h2>
     </nav>
   );
 }
