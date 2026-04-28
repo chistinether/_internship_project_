@@ -5,8 +5,12 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from .models import Student, Report, Feedback, Supervisor
-from .serializers import StudentSerializer, ReportSerializer,FeedbackSerializer, SupervisorSerializer
+from .serializers import UserSerializer, StudentSerializer, ReportSerializer,FeedbackSerializer, SupervisorSerializer
 from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
+
+def home(request):
+    return JsonResponse({"message": "Backend is working"})
 
 User = get_user_model()
 
@@ -103,6 +107,10 @@ class CurrentUserView(APIView):
 #viewsets
 User = get_user_model()
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
@@ -112,6 +120,7 @@ class StudentViewSet(viewsets.ModelViewSet):
 class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
