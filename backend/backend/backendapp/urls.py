@@ -5,8 +5,10 @@ from .views import (
     StudentViewSet,
     SupervisorViewSet,
     FeedbackViewSet,
-    ReportViewSet
+    ReportViewSet,
+
 )
+from .views import login_view
 
 router = DefaultRouter()
 
@@ -19,4 +21,5 @@ router.register(r'reports', ReportViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('login/', login_view, name='login'),
 ]

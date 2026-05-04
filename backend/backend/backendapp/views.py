@@ -8,11 +8,42 @@ from .models import Student, Report, Feedback, Supervisor
 from .serializers import UserSerializer, StudentSerializer, ReportSerializer,FeedbackSerializer, SupervisorSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 def home(request):
     return JsonResponse({"message": "Backend is working"})
 
 User = get_user_model()
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def login_view(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+    role = request.data.get('role')
+
+    if not email or not password or not role:
+        return Response({'error': 'Email, password and role are required'}, status=400)
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return Response({'error': 'No account found with that email'}, status=404)
+
+    if not authenticate(username=user.username, password=password):
+        return Response({'error': 'Incorrect password'}, status=401)
+
+    if user.role != role:
+        return Response({'error': f'This account is not registered as {role}'}, status=403)
+
+    refresh = RefreshToken.for_user(user)
+    return Response({
+        'token': str(refresh.access_token),
+        'role': user.role,
+        'name': user.get_full_name(),
+    })
 
 class RegisterView(APIView):
     def post(self, request):
@@ -58,30 +89,11 @@ class RegisterView(APIView):
 
         return Response({
             "message": "User registered successfully",
-            "token": token.key,
+            "token": token.key,   
             "role": user.role
         }, status=status.HTTP_201_CREATED)
+  
 
-class LoginView(APIView):
-    def post(self, request):
-        username = request.data.get("username")
-        password = request.data.get("password")
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            token, created = Token.objects.get_or_create(user=user)
-
-            return Response({
-                "message": "Login successful",
-                "token": token.key,
-                "role": user.role
-            }, status=status.HTTP_200_OK)
-
-        return Response(
-            {"error": "Invalid credentials"},
-            status=status.HTTP_401_UNAUTHORIZED
-        )
 
 class LogoutView(APIView):
     def post(self, request):
