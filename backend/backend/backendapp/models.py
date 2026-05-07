@@ -41,6 +41,7 @@ class Report(models.Model):
         ("submitted", "Submitted"),
         ("approved", "Approved"),
         ("rejected", "Rejected"),
+        ("refused", "Refused")
     )
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
