@@ -66,6 +66,11 @@ import ForgotPassword from "./ForgotPassword";
 import StudentDashboard from "./dashboards/StudentDashboard";
 import SupervisorDashboard from "./dashboards/SupervisorDashboard";
 import AdminDashboard from "./dashboards/AdminDashboard";
+import { UserProvider } from "./UserContext";
+
+<UserProvider>
+  <App />
+</UserProvider>
 
 function DashboardRouter() {
   const role = localStorage.getItem("role") || sessionStorage.getItem("role");
@@ -85,5 +90,6 @@ function App() {
     </Routes>
   );
 }
+
 
 export default App;
