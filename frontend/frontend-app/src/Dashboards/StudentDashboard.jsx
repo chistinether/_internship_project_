@@ -1,12 +1,25 @@
 import { useState } from "react";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../UserContext";
+import { API_BASE } from "../api";
+import ProfilePage from "../pages/ProfilePage";
 
 export default function StudentDashboard() {
   const { user } = useUser();
-  const { name, token } = user;
+
+const token = user?.token || localStorage.getItem("access");
+
+const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+
+const name =
+  user?.name ||
+  user?.first_name ||
+  storedUser.first_name ||
+  storedUser.email ||
+  "Student";
+
 
   const api = (url, options = {}) =>
-    fetch(url, {
+    fetch(`${API_BASE}${url}`, {
       ...options,
       headers: {
         "Content-Type": "application/json",
@@ -14,7 +27,7 @@ export default function StudentDashboard() {
         ...options.headers,
       },
     });
-
+  const [showProfile, setShowProfile] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const [checkStatus, setCheckStatus] = useState(null);
   const [checkTime, setCheckTime] = useState(null);
@@ -31,15 +44,23 @@ export default function StudentDashboard() {
   const handleCheckIn = () => {
     const now = new Date().toLocaleTimeString();
     setCheckStatus("in");
+    useEffect(() => {
+      api("/api/attendance/today/")
+      .then(res => res.json())
+      .then(data => {
+      setCheckStatus(data.status);
+      setCheckTime(data.time);
+     });
+    }, []);
     setCheckTime(now);
-    api("/api/attendance/checkin/", { method: "POST" });
+    api("/api/attendance/check-in/", { method: "POST" });
   };
 
   const handleCheckOut = () => {
     const now = new Date().toLocaleTimeString();
     setCheckStatus("out");
     setCheckTime(now);
-    api("/api/attendance/checkout/", { method: "POST" });
+    api("/api/attendance/check-out/", { method: "POST" });
   };
 
   const handleLogSubmit = () => {
@@ -47,7 +68,7 @@ export default function StudentDashboard() {
       setLogMsg("Please fill in both the activity and hours.");
       return;
     }
-    api("/api/logs/", {
+    api("/api/daily-logs/", {
       method: "POST",
       body: JSON.stringify({ content: logText, hours }),
     }).then(() => {
@@ -79,7 +100,7 @@ export default function StudentDashboard() {
     }
     const formData = new FormData();
     formData.append("file", proofFile);
-    fetch("/api/proof/", {
+    fetch(`${API_BASE}/api/proofs/`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -107,6 +128,16 @@ export default function StudentDashboard() {
   ];
 
   const s = styles;
+  if (showProfile) {
+  return (
+    <ProfilePage
+      onBack={() => setShowProfile(false)}
+      onLogout={() => {
+        window.location.href = "/";
+      }}
+    />
+  );
+}
 
   return (
     <div style={s.page}>
@@ -115,6 +146,13 @@ export default function StudentDashboard() {
           <h1 style={s.title}>Student Dashboard</h1>
           <p style={s.subtitle}>Welcome back, {name}</p>
         </div>
+        <div style={{ display: "flex", gap: "12px" }}> </div>
+        <button
+          onClick={() => setShowProfile(true)}
+          style={s.profileBtn}
+          >
+          Profile
+        </button>
         <div style={s.dateBadge}>{new Date().toDateString()}</div>
       </div>
 
@@ -341,4 +379,13 @@ const styles = {
     borderRadius: "8px", padding: "16px", minHeight: "80px",
   },
   fileInput: { color: "white" },
+  profileBtn: {
+  padding: "10px 18px",
+  borderRadius: "8px",
+  border: "none",
+  background: "#2563eb",
+  color: "white",
+  cursor: "pointer",
+  fontSize: "0.9rem",
+},
 };
