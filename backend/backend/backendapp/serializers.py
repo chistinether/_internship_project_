@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backendapp.models import Student, Supervisor, Report, Feedback
+from backendapp.models import User, Student, Supervisor, Report, Feedback, Attendance, DailyLog, Goal, ProofOfWork, GoalFeedback
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -31,3 +31,75 @@ class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = '__all__'
+
+class AttendanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Attendance
+        fields = '__all__'
+        read_only_fields = ['student', 'date']
+
+class DailyLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailyLog
+        fields = '__all__'
+        read_only_fields = ['student']
+
+class GoalSerializer(serializers.ModelSerializer):
+
+    student_name = serializers.CharField(
+        source='student.username',
+        read_only=True
+    )
+
+    created_by_name = serializers.CharField(
+        source='created_by.username',
+        read_only=True
+    )
+
+    class Meta:
+        model = Goal
+
+        fields = [
+            'id',
+            'title',
+            'description',
+            'student',
+            'student_name',
+            'created_by',
+            'created_by_name',
+            'status',
+            'created_at'
+        ]
+
+        read_only_fields = [
+            'created_by',
+            'created_at'
+        ]
+
+class ProofOfWorkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProofOfWork
+        fields = '__all__'
+        read_only_fields = ['student']
+
+class GoalFeedbackSerializer(serializers.ModelSerializer):
+    supervisor_name = serializers.CharField(
+        source='supervisor.username',
+        read_only=True
+    )
+
+    class Meta:
+        model = GoalFeedback
+        fields = [
+            'id',
+            'goal',
+            'supervisor',
+            'supervisor_name',
+            'feedback',
+            'created_at'
+        ]
+
+        read_only_fields = [
+            'supervisor',
+            'created_at'
+        ]
