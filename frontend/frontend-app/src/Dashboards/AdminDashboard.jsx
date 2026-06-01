@@ -76,7 +76,7 @@ const name =
     } catch (error) {
 
       console.error(
-        "Dashboard load failed:",
+        "Dashboard failed to load:",
         error
       );
     }
