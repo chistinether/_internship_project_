@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { api } from "./api";
+import "./App.css";
 
 // ─── Roles ─────────────────────────────────────────────
 const ROLES = [
@@ -166,8 +167,17 @@ function CreateAccount({ onSignupSuccess }) {
 
   // ─── ROLE SELECT SCREEN ─────────────────────────────
   if (step === "role") {
-    return (
-      <div style={{ padding: 30, textAlign: "center" }}>
+  return (
+    <div
+      style={{
+        padding: 30,
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        minHeight: "100vh",
+      }}
+    >
         <h2>Create Account</h2>
 
         {ROLES.map((role) => (
@@ -178,8 +188,23 @@ function CreateAccount({ onSignupSuccess }) {
               setStep("form");
             }}
             style={{
+              padding: "10px",
+                borderRadius: "15px",
+                border: "none",
+                cursor: "pointer",
+                background:
+                  "linear-gradient(135deg, #061321, #1e0303)",
+                color: "white",
+                fontSize: "1rem",
+                fontWeight: "500",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                boxShadow:
+                  "0 4px 12px rgba(37,99,235,0.4)",
+              width: "250px",
+              height: "60px",
+              display: "flex",
               margin: 10,
-              padding: 15,
               cursor: "pointer",
               border: `2px solid ${role.color}`,
             }}
@@ -198,7 +223,17 @@ function CreateAccount({ onSignupSuccess }) {
   // ─── FORM SCREEN ─────────────────────────────────────
   if (step === "form") {
     return (
-      <form onSubmit={handleSubmit} style={{ padding: 30 }}>
+      <form
+  onSubmit={handleSubmit}
+  style={{
+    padding: 30,
+    maxWidth: "400px",
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px",
+  }}
+>
         <h2>Register as {roleConfig.label}</h2>
 
         {fields.map(({ label, name, type }) => (
