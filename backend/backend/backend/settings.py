@@ -26,7 +26,25 @@ SECRET_KEY = 'django-insecure-garo(!gl6&(!ak!pmg7irncg&kua-)6yg_ka%%%+4jw^6=7rmu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "esther-api.tagooledavid.com",
+    "localhost",
+    "127.0.0.1"
+
+
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://esther-api.tagooledavid.com",
+    "http://localhost:5173",
+    "http://127.0.0.:5173",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://esther-api.tagooledavid.com",
+    "http://localhost:5173",
+    "http://127.0.0.:5173",
+]
 
 
 # Application definition
@@ -45,6 +63,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +71,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
