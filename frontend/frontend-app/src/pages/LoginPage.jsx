@@ -19,11 +19,14 @@ function LoginPage() {
       setEmail(savedEmail);
       setRememberMe(true);
     }
-    if (savedPassword) setPassword(savedPassword);
+    if (savedPassword) {
+      setPassword(savedPassword);
+    }
   }, []);
 
   const handleLogin = async (role) => {
     const newErrors = {};
+
     if (!email.trim()) newErrors.email = "Email is required";
     if (!password.trim()) newErrors.password = "Password is required";
 
@@ -48,6 +51,7 @@ function LoginPage() {
         return;
       }
 
+      // Save data...
       localStorage.setItem("user", JSON.stringify({
         name: data.user?.first_name || data.user?.email,
         email: data.user?.email,
@@ -77,77 +81,114 @@ function LoginPage() {
   return (
     <div style={styles.loginPage}>
       <div style={styles.welcomeText}>
-        <h1 style={styles.welcomeTitle}>Welcome to</h1>
-        <h1 style={styles.ilesTitle}>ILES</h1>
+        <h1>Welcome to</h1>
+        <h1>ILES</h1>
       </div>
 
       <div style={styles.loginBox}>
         <h2 style={styles.heading}>Login</h2>
 
-        {errors.general && <p style={styles.errorText}>{errors.general}</p>}
+        {errors.general && (
+          <p style={styles.errorText}>{errors.general}</p>
+        )}
 
         <form onSubmit={(e) => e.preventDefault()}>
-          <label style={styles.label}>Email</label>
+
+          <label style={styles.label}>Email:</label>
           <input
             type="email"
-            placeholder="Enter your email address"
+            placeholder="Email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
               setErrors((prev) => ({ ...prev, email: "", general: "" }));
             }}
-            style={{ ...styles.input, border: errors.email ? "2px solid #f87171" : "1px solid #475569" }}
+            style={{
+              ...styles.input,
+              border: errors.email ? "2px solid #f87171" : "1px solid #64748b",
+            }}
           />
           {errors.email && <p style={styles.smallError}>{errors.email}</p>}
 
-          <label style={styles.label}>Password</label>
+          <label style={styles.label}>Password:</label>
           <input
             type="password"
-            placeholder="Enter your password"
+            placeholder="Password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
               setErrors((prev) => ({ ...prev, password: "", general: "" }));
             }}
-            style={{ ...styles.input, border: errors.password ? "2px solid #f87171" : "1px solid #475569" }}
+            style={{
+              ...styles.input,
+              border: errors.password ? "2px solid #f87171" : "1px solid #64748b",
+            }}
           />
           {errors.password && <p style={styles.smallError}>{errors.password}</p>}
 
+          {/* Remember Me */}
           <div style={styles.rememberContainer}>
-            <input type="checkbox" id="rememberMe" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
             <span style={styles.rememberText} onClick={() => setRememberMe(!rememberMe)}>
               Remember me
             </span>
           </div>
 
+          {/* Login Buttons */}
           <div style={styles.buttonGroup}>
-            <button type="button" onClick={() => handleLogin("student")} disabled={loadingRole !== null} style={styles.studentBtn}>
+            <button
+              type="button"
+              onClick={() => handleLogin("student")}
+              disabled={loadingRole !== null}
+              style={styles.studentBtn}
+            >
               {loadingRole === "student" ? "Loading..." : "LOGIN AS STUDENT"}
             </button>
 
-            <button type="button" onClick={() => handleLogin("workplace")} disabled={loadingRole !== null} style={styles.workplaceBtn}>
+            <button
+              type="button"
+              onClick={() => handleLogin("workplace")}
+              disabled={loadingRole !== null}
+              style={styles.workplaceBtn}
+            >
               {loadingRole === "workplace" ? "Loading..." : "LOGIN AS WORKPLACE SUPERVISOR"}
             </button>
 
-            <button type="button" onClick={() => handleLogin("academic")} disabled={loadingRole !== null} style={styles.academicBtn}>
+            <button
+              type="button"
+              onClick={() => handleLogin("academic")}
+              disabled={loadingRole !== null}
+              style={styles.academicBtn}
+            >
               {loadingRole === "academic" ? "Loading..." : "LOGIN AS ACADEMIC SUPERVISOR"}
             </button>
           </div>
 
+          {/* Links */}
           <div style={styles.extraLinks}>
             <Link to="/forgot-password" style={styles.link}>Forgot Password?</Link>
             <p style={styles.signupText}>
-              Don't have an account? <Link to="/create-account" style={styles.link}>Signup</Link>
+              Don't have an account?{" "}
+              <Link to="/create-account" style={styles.link}>Signup</Link>
             </p>
           </div>
 
+          {/* Contact */}
           <div style={styles.contactInfo}>
             <p style={styles.contactText}>Need help? Contact us</p>
             <p style={styles.contactText}>
               Email: <a href="mailto:Support.ILES@gmail.com" style={styles.contactLink}>Support.ILES@gmail.com</a>
             </p>
             <p style={styles.contactText}>
-              Phone: <span style={styles.phone} onClick={() => { navigator.clipboard.writeText("+256776083497"); alert("Phone copied!"); }}>+256 776 083497</span>
+              Phone:{" "}
+              <span style={styles.phone} onClick={() => { navigator.clipboard.writeText("+256776083497"); alert("Phone number copied!"); }}>
+                +256 776 083497
+              </span>
             </p>
           </div>
         </form>
@@ -156,7 +197,7 @@ function LoginPage() {
   );
 }
 
-/* ====================== PROFESSIONAL STYLES ====================== */
+/* ====================== IMPROVED STYLES ====================== */
 const styles = {
   loginPage: {
     minHeight: "100vh",
@@ -166,88 +207,155 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     padding: "20px",
-    fontFamily: "'Segoe UI', system-ui, sans-serif",
+    fontFamily: "'Segoe UI', sans-serif",
+    color: "#e0e7ff",
   },
 
   welcomeText: {
     textAlign: "center",
-    marginBottom: "65px",
-  },
-
-  welcomeTitle: {
-    color: "#e0e7ff",
-    margin: "0 0 12px 0",
-    fontSize: "2.9rem",
-    fontWeight: "500",
-  },
-
-  ilesTitle: {
-    color: "#ffffff",
-    margin: "0",
-    fontSize: "5.6rem",
-    fontWeight: "700",
-    letterSpacing: "6px",
-    textShadow: "0 6px 30px rgba(0, 0, 0, 0.75)",
+    marginBottom: "30px",
   },
 
   loginBox: {
-    background: "rgba(15, 23, 42, 0.96)",
-    border: "1px solid rgba(100, 116, 139, 0.4)",
-    borderRadius: "24px",
-    padding: "52px 60px",
+    background: "rgba(15, 23, 42, 0.95)",
+    border: "1px solid rgba(100, 116, 139, 0.5)",
+    borderRadius: "16px",
+    padding: "40px 35px",
     width: "100%",
-    maxWidth: "800px",
-    boxShadow: "0 25px 60px -12px rgba(0, 0, 0, 0.65)",
+    maxWidth: "460px",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.6)",
   },
 
   heading: {
     color: "#ffffff",
     textAlign: "center",
-    marginBottom: "38px",
-    fontSize: "1.9rem",
-    fontWeight: "600",
+    marginBottom: "24px",
+    fontSize: "1.8rem",
   },
 
   label: {
-    color: "#cbd5e1",
+    color: "#c0d0ff",
     fontSize: "1.05rem",
-    marginBottom: "8px",
+    marginBottom: "6px",
     display: "block",
     fontWeight: "500",
   },
 
   input: {
     width: "100%",
-    padding: "15px 18px",
-    marginBottom: "22px",
+    padding: "12px 14px",
+    marginBottom: "16px",
     background: "#1e2937",
-    color: "#e2e8f0",
-    border: "1px solid #475569",
-    borderRadius: "12px",
-    fontSize: "1.05rem",
-    outline: "none",
+    color: "#e0e7ff",
+    borderRadius: "8px",
+    fontSize: "1rem",
   },
 
-  errorText: { color: "#f87171", textAlign: "center", marginBottom: "20px", fontWeight: "500" },
-  smallError: { color: "#f87171", fontSize: "0.85rem", margin: "-6px 0 16px 4px" },
+  errorText: {
+    color: "#f87171",
+    textAlign: "center",
+    marginBottom: "16px",
+    fontWeight: "500",
+  },
 
-  rememberContainer: { display: "flex", alignItems: "center", gap: "10px", margin: "12px 0 30px 0" },
-  rememberText: { color: "#cbd5e1", fontSize: "1rem", cursor: "pointer" },
+  smallError: {
+    color: "#f87171",
+    fontSize: "0.85rem",
+    margin: "-8px 0 12px 0",
+  },
 
-  buttonGroup: { display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" },
+  rememberContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    margin: "12px 0 24px 0",
+  },
 
-  studentBtn: { padding: "16px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg, #3b82f6, #1e40af)", color: "white", fontSize: "1.05rem", fontWeight: "600", cursor: "pointer" },
-  workplaceBtn: { padding: "16px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg, #10b981, #047857)", color: "white", fontSize: "1.05rem", fontWeight: "600", cursor: "pointer" },
-  academicBtn: { padding: "16px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg, #8b5cf6, #5b21b6)", color: "white", fontSize: "1.05rem", fontWeight: "600", cursor: "pointer" },
+  rememberText: {
+    color: "#c0d0ff",
+    fontSize: "0.98rem",
+    cursor: "pointer",
+  },
 
-  extraLinks: { textAlign: "center", marginBottom: "28px", color: "#94a3b8" },
-  link: { color: "#60a5fa", textDecoration: "none", fontWeight: "500" },
-  signupText: { marginTop: "12px", color: "#94a3b8" },
+  buttonGroup: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    marginBottom: "24px",
+  },
 
-  contactInfo: { textAlign: "center", marginTop: "32px", borderTop: "1px solid rgba(148,163,184,0.25)", paddingTop: "24px" },
-  contactText: { color: "#94a3b8", margin: "6px 0", fontSize: "0.95rem" },
-  contactLink: { color: "#60a5fa" },
-  phone: { color: "#60a5fa", cursor: "pointer", textDecoration: "underline" },
+  studentBtn: {
+    padding: "14px",
+    borderRadius: "12px",
+    border: "none",
+    background: "linear-gradient(135deg, #2563eb, #1e40af)",
+    color: "white",
+    fontSize: "1.02rem",
+    fontWeight: "600",
+    cursor: "pointer",
+  },
+
+  workplaceBtn: {
+    padding: "14px",
+    borderRadius: "12px",
+    border: "none",
+    background: "linear-gradient(135deg, #059669, #047857)",
+    color: "white",
+    fontSize: "1.02rem",
+    fontWeight: "600",
+    cursor: "pointer",
+  },
+
+  academicBtn: {
+    padding: "14px",
+    borderRadius: "12px",
+    border: "none",
+    background: "linear-gradient(135deg, #7c3aed, #5b21b6)",
+    color: "white",
+    fontSize: "1.02rem",
+    fontWeight: "600",
+    cursor: "pointer",
+  },
+
+  extraLinks: {
+    textAlign: "center",
+    marginBottom: "20px",
+  },
+
+  link: {
+    color: "#a5b4fc",
+    textDecoration: "none",
+    fontWeight: "500",
+  },
+
+  signupText: {
+    color: "#c0d0ff",
+    marginTop: "12px",
+  },
+
+  contactInfo: {
+    textAlign: "center",
+    marginTop: "20px",
+    borderTop: "1px solid rgba(148, 163, 184, 0.3)",
+    paddingTop: "20px",
+  },
+
+  contactText: {
+    color: "#b0b8e0",
+    margin: "6px 0",
+    fontSize: "0.95rem",
+  },
+
+  contactLink: {
+    color: "#a5b4fc",
+    textDecoration: "underline",
+  },
+
+  phone: {
+    color: "#a5b4fc",
+    cursor: "pointer",
+    textDecoration: "underline",
+  },
 };
 
 export default LoginPage;
