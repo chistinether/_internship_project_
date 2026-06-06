@@ -152,7 +152,7 @@ const styles = {
   },
 
   footer: {
-    color: "rgba(255,255,255,0.6)",
+    color: "rgba(77, 18, 18, 0.6)",
     marginTop: 14,
     fontSize: 13,
   },
