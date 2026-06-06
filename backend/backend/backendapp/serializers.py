@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backendapp.models import User, Student, Supervisor, Report, Feedback, Attendance, DailyLog, Goal, ProofOfWork
+from backendapp.models import User, Student, Supervisor, Report, Feedback, Attendance, DailyLog, Goal, ProofOfWork, GoalFeedback
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -83,12 +83,64 @@ class DailyLogSerializer(serializers.ModelSerializer):
         read_only_fields = ['student']
 
 class GoalSerializer(serializers.ModelSerializer):
+
+    student_name = serializers.CharField(
+        source='student.username',
+        read_only=True
+    )
+
+    created_by_name = serializers.CharField(
+        source='created_by.username',
+        read_only=True
+    )
+
     class Meta:
         model = Goal
-        fields = '__all__'
+
+        fields = [
+            'id',
+            'title',
+            'description',
+            'student',
+            'student_name',
+            'created_by',
+            'created_by_name',
+            'status',
+            'created_at'
+        ]
+
+        read_only_fields = [
+            'created_by',
+            'created_at'
+        ]
 
 class ProofOfWorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProofOfWork
         fields = '__all__'
         read_only_fields = ['student']
+<<<<<<< Updated upstream
+=======
+
+class GoalFeedbackSerializer(serializers.ModelSerializer):
+    supervisor_name = serializers.CharField(
+        source='supervisor.username',
+        read_only=True
+    )
+
+    class Meta:
+        model = GoalFeedback
+        fields = [
+            'id',
+            'goal',
+            'supervisor',
+            'supervisor_name',
+            'feedback',
+            'created_at'
+        ]
+
+        read_only_fields = [
+            'supervisor',
+            'created_at'
+        ]
+>>>>>>> Stashed changes
