@@ -138,8 +138,7 @@ class ProofOfWork(models.Model):
 
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.student} -{self.title}"
+
 
 
 #class OTP(models.Model):
