@@ -181,6 +181,8 @@ class GoalFeedback(models.Model):
 
     is_used = models.BooleanField(default=False)
 
+    def __str__(self):
+
 
     
         
