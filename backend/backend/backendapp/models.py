@@ -183,4 +183,4 @@ class GoalFeedback(models.Model):
 
 
     def __str__(self):
-        return f"{self.supervisor} - {self.feedback}"
+        
