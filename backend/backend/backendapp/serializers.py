@@ -119,8 +119,6 @@ class ProofOfWorkSerializer(serializers.ModelSerializer):
         model = ProofOfWork
         fields = '__all__'
         read_only_fields = ['student']
-<<<<<<< Updated upstream
-=======
 
 class GoalFeedbackSerializer(serializers.ModelSerializer):
     supervisor_name = serializers.CharField(
@@ -143,4 +141,3 @@ class GoalFeedbackSerializer(serializers.ModelSerializer):
             'supervisor',
             'created_at'
         ]
->>>>>>> Stashed changes
