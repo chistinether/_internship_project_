@@ -114,4 +114,17 @@ text-decoration: none;
     font-size: 1rem;
     color: #ffffff;
 }
+.create-account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
 
+.role-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}

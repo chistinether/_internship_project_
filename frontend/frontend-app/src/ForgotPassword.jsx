@@ -148,7 +148,7 @@ const styles = {
     border: "none",
     background: "#2563eb",
     color: "white",
-    fontWeight: 600,
+    fontWeight: 500,
   },
 
   footer: {

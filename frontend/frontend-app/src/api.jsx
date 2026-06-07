@@ -1,9 +1,9 @@
-export const API_BASE = "http://127.0.0.1:8000/api";
+export const API_BASE = "https://esther-api.tagooledavid.com/api";
 
 export async function api(endpoint, options = {}) {
 
   const token =
-    localStorage.getItem("access")||
+    localStorage.getItem("access") ||
     sessionStorage.getItem("token");
 
   const response = await fetch(

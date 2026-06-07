@@ -122,7 +122,7 @@ const name =
 
       setGoalMsg(
         data.error ||
-        "Failed to send goal"
+        "Failed to send goal."
       );
 
       return;

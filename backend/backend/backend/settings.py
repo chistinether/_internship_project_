@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +33,27 @@ SECRET_KEY = 'django-insecure-garo(!gl6&(!ak!pmg7irncg&kua-)6yg_ka%%%+4jw^6=7rmu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "esther-api.tagooledavid.com",
+    "localhost",
+    "127.0.0.1"
+
+
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://esther-api.tagooledavid.com",
+    "http://localhost:5173",
+    "http://127.0.0.:5173",
+    "https://internship-project-6to.pages.dev"
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://esther-api.tagooledavid.com",
+    "http://localhost:5173",
+    "http://127.0.0.:5173",
+    "https://internship-project-6to.pages.dev"
+]
 
 
 # Application definition
@@ -47,6 +72,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +80,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -83,10 +108,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 DEBUG = True

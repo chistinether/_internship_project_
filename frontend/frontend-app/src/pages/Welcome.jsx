@@ -68,7 +68,7 @@ function Welcome() {
             width: "100%",
             padding: 10,
             marginTop: 15,
-            background: "linear-gradient(to right, #0f2027,#203a43, #2c5364)",
+            background: "linear-gradient(to right, #05648d,#203a43, #035f87)",
             color: "white",
             border: "none",
             cursor: "pointer"

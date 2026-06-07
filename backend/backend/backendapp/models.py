@@ -138,9 +138,10 @@ class ProofOfWork(models.Model):
 
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.student} -{self.title}"
 
+def __str__(self):
+    return f"{self.student} - {self.title}"
+    
 
 #class OTP(models.Model):
 
@@ -180,6 +181,9 @@ class GoalFeedback(models.Model):
 
     is_used = models.BooleanField(default=False)
 
-
     def __str__(self):
-        return f"{self.supervisor} - {self.feedback}"
+        return f"{self.supervisor} - feedback for goal {self.goal.id}"
+
+
+    
+        
