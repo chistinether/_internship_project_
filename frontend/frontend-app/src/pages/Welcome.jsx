@@ -33,7 +33,7 @@ function Welcome() {
           padding: 30,
           borderRadius: 10,
           width: 300,
-          boxShadow: "0 5px 20px rgba(173, 36, 36, 0.2)"
+          boxShadow: "0 5px 20px rgba(0,0,0,0.2)"
         }}
       >
         <h1 style={{ textAlign: "center", color: "black" }}>Welcome to ILES</h1>
