@@ -281,7 +281,14 @@ const name =
               onChange={(e) => setReportText(e.target.value)}
               style={{ ...s.textarea, height: "180px" }}
             />
-            <button style={s.btn} onClick={handleReportSubmit}>Submit to Supervisor</button>
+           <h2
+  style={{
+    ...s.sectionTitle,
+    color: "#ffffff",
+  }}
+>
+  Goals from Supervisor
+</h2>
           </div>
         )}
 
