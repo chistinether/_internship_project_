@@ -229,7 +229,7 @@ const name =
           <h2
   style={{
     ...s.sectionTitle,
-    color: "#FFFDD0", 
+    color: "#ffff", 
   }}
 >
   Daily Activity Log
