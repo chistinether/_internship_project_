@@ -136,10 +136,13 @@ function LoginPage() {
 
     <div className="login-page">
 
-      <div className="welcome-text">
-        <h1>Welcome to</h1>
-        <h1>ILES</h1>
-      </div>
+     <div
+  className="welcome-text"
+  style={{ color: "#ffffff" }}
+>
+  <h1>Welcome to</h1>
+  <h1>ILES</h1>
+</div>
 
       <div className="login-box">
 
