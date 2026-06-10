@@ -194,7 +194,7 @@ const name =
            <h2
   style={{
     ...s.sectionTitle,
-    color: "#FFFDD0",
+    color: "#fcfcfa",
   }}
 >
   Digital Check In / Out
