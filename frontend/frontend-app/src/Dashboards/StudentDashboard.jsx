@@ -263,7 +263,6 @@ const name =
     color: "#ffffff",
   }}
 >
-  Submit Weekly Report
 </h2>
             {reportMsg && <div style={s.successBox}>{reportMsg}</div>}
             <label style={s.label}>Week Number</label>
