@@ -306,7 +306,6 @@ const name =
     color: "#ffffff",
   }}
 >
-  Upload Proof of Work
 </h2>
             <textarea
               placeholder="Are the goals met? Share your feedback with your supervisor..."
