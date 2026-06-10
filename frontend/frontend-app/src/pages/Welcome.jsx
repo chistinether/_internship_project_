@@ -128,16 +128,15 @@ const styles = {
     background: "white",
   },
 
-  button: {
-    padding: "10px",
-    background: "linear-gradient(to right, #05648d,#203a43)",
-    color: "white",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold",
-  },
-
+button: {
+  padding: "10px",
+  background: "linear-gradient(to right, #05648d,#203a43)",
+  color: "#ffffff", 
+  border: "none",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontWeight: "bold",
+},
   forgot: {
     textAlign: "center",
     fontSize: "12px",
