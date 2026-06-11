@@ -60,12 +60,12 @@ color: rgb(255, 255, 255);
 }
 
 .login-box label{
+    color:#ffffff
     display: block;
     text-align: left;
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: 400;
-    color:#ffffff
 }
 .login-box input:not([type="checkbox"]){
     width: 100%;
@@ -92,7 +92,7 @@ color: rgb(255, 255, 255);
 }
 
 .login-buttons button:hover{
-    background: #000000;
+    background: #070707;
 }
 .login-buttons {
     display: flex;
