@@ -131,6 +131,9 @@ class Goal(models.Model):
 
     date_created = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.title} - {self.student}" 
+
 class ProofOfWork(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
