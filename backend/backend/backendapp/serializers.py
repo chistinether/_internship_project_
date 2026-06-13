@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from backendapp.models import User, Student, Supervisor, Report, Feedback, Attendance, DailyLog, Goal, ProofOfWork, GoalFeedback
 from django.contrib.auth import get_user_model
+from datetime import date
 
 User = get_user_model()
 
@@ -76,11 +77,27 @@ class AttendanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['student', 'date']
 
+
+
 class DailyLogSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = DailyLog
         fields = '__all__'
         read_only_fields = ['student']
+
+    def validate(self, data):
+        request = self.context.get('request')
+        student = request.user.student  # since student is read-only
+        today = date.today()
+
+        # check if log already exists
+        if DailyLog.objects.filter(student=student, date=today).exists():
+            raise serializers.ValidationError(
+                "You have already submitted today's log."
+            )
+
+        return data
 
 class GoalSerializer(serializers.ModelSerializer):
 
