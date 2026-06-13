@@ -83,6 +83,14 @@ class DailyLog(models.Model):
     content = models.TextField()
     date = models.DateField(auto_now_add=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['student', 'date'],
+                name='unique_daily_log_per_student_per_day'
+            )
+        ]
+
     def __str__(self):
         return f"{self.student} - {self.date}"
 
