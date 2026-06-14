@@ -91,7 +91,6 @@ class DailyLog(models.Model):
             )
         ]
 
-    def __str__(self):
 
 class Goal(models.Model):
     GOAL_TYPE = (
