@@ -12,6 +12,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     #is_verified = models.BooleanField(default=False)
 
+    def __str__(self):
     
 
 class Student(models.Model):
