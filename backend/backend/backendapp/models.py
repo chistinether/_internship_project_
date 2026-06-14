@@ -92,7 +92,6 @@ class DailyLog(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.student} - {self.date}"
 
 class Goal(models.Model):
     GOAL_TYPE = (
