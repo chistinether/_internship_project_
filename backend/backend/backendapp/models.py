@@ -160,14 +160,6 @@ def __str__(self):
     
 
 
-
-   # def is_expired(self):
-    #    return timezone.now() > self.created_at + timedelta(minutes=10)
-
-    #def __str__(self):
-     #   return f"{self.user.username} - {self.code}"
-
-
 class GoalFeedback(models.Model):
     goal = models.ForeignKey(
         'Goal',
