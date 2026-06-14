@@ -191,7 +191,14 @@ const name =
         {/* CHECK IN / OUT */}
         {activeTab === "checkin" && (
           <div style={s.section}>
-            <h2 style={s.sectionTitle}>Digital Check In / Out</h2>
+           <h2
+  style={{
+    ...s.sectionTitle,
+    color: "#fcfcfa",
+  }}
+>
+  Digital Check In / Out
+</h2>
             {checkStatus && (
               <div style={s.successBox}>
                 Checked {checkStatus} at {checkTime}
@@ -219,7 +226,14 @@ const name =
         {/* DAILY LOG */}
         {activeTab === "log" && (
           <div style={s.section}>
-            <h2 style={s.sectionTitle}>Daily Activity Log</h2>
+          <h2
+  style={{
+    ...s.sectionTitle,
+    color: "#ffff", 
+  }}
+>
+  Daily Activity Log
+</h2>
             {logMsg && <div style={s.successBox}>{logMsg}</div>}
             <label style={s.label}>Hours Worked</label>
             <input
@@ -243,7 +257,13 @@ const name =
         {/* WEEKLY REPORT */}
         {activeTab === "report" && (
           <div style={s.section}>
-            <h2 style={s.sectionTitle}>Submit Weekly Report</h2>
+           <h2
+  style={{
+    ...s.sectionTitle,
+    color: "#ffffff",
+  }}
+>
+</h2>
             {reportMsg && <div style={s.successBox}>{reportMsg}</div>}
             <label style={s.label}>Week Number</label>
             <input
@@ -260,7 +280,14 @@ const name =
               onChange={(e) => setReportText(e.target.value)}
               style={{ ...s.textarea, height: "180px" }}
             />
-            <button style={s.btn} onClick={handleReportSubmit}>Submit to Supervisor</button>
+           <h2
+  style={{
+    ...s.sectionTitle,
+    color: "#ffffff",
+  }}
+>
+  Goals from Supervisor
+</h2>
           </div>
         )}
 
@@ -269,10 +296,16 @@ const name =
           <div style={s.section}>
             <h2 style={s.sectionTitle}>Goals from Supervisor</h2>
             <div style={s.goalBox}>
-              <p style={{ color: "#aaa" }}>Goals sent by your supervisor will appear here.</p>
+              <p style={{ color: "#ffffff" }}>Goals sent by your supervisor will appear here.</p>
             </div>
             {goalsMsg && <div style={s.successBox}>{goalsMsg}</div>}
-            <label style={s.label}>Your Feedback on Goals</label>
+           <h2
+  style={{
+    ...s.sectionTitle,
+    color: "#ffffff",
+  }}
+>
+</h2>
             <textarea
               placeholder="Are the goals met? Share your feedback with your supervisor..."
               value={goalFeedback}
@@ -287,7 +320,7 @@ const name =
         {activeTab === "proof" && (
           <div style={s.section}>
             <h2 style={s.sectionTitle}>Upload Proof of Work</h2>
-            <p style={{ color: "#aaa", marginBottom: "16px" }}>
+            <p style={{ color: "#f7f4f4", marginBottom: "16px" }}>
               Upload a document or image. It will be sent to your email as a record.
             </p>
             <input

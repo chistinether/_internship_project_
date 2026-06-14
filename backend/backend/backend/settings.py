@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,23 +34,41 @@ SECRET_KEY = 'django-insecure-garo(!gl6&(!ak!pmg7irncg&kua-)6yg_ka%%%+4jw^6=7rmu
 DEBUG = True
 
 ALLOWED_HOSTS = [
+<<<<<<< HEAD
+    "esther-api.tagooledavid.com",
+    "localhost",
+    "127.0.0.1"
+
+
+=======
     "localhost",
     "127.0.0.1",
     "esther-api.tagooledavid.com",
+>>>>>>> backend
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://esther-api.tagooledavid.com",
     "http://localhost:5173",
+<<<<<<< HEAD
+    "http://127.0.0.:5173",
+    "https://internship-project-6to.pages.dev"
+=======
     "http://127.0.0.1:5173",
+>>>>>>> backend
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://esther-api.tagooledavid.com",
-    "http://127.0.0.1:5173",
     "http://localhost:5173",
+<<<<<<< HEAD
+    "http://127.0.0.:5173",
+    "https://internship-project-6to.pages.dev"
+]
+=======
 ]
 
+>>>>>>> backend
 
 
 # Application definition
@@ -74,6 +97,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'backend.urls'
 AUTH_USER_MODEL = 'backendapp.User'
 
@@ -99,13 +123,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
-
+DEBUG = True
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 

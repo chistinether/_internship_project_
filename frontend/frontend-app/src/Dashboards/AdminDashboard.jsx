@@ -76,7 +76,7 @@ const name =
     } catch (error) {
 
       console.error(
-        "Dashboard load failed:",
+        "Dashboard failed to load:",
         error
       );
     }
@@ -122,7 +122,7 @@ const name =
 
       setGoalMsg(
         data.error ||
-        "Failed to send goal"
+        "Failed to send goal."
       );
 
       return;

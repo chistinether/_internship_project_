@@ -2,7 +2,7 @@ body{
     margin: 0;
     background-color: #41468f;
     height: 100vh;
-    animation: bgShift 7s infinite alternate;
+    animation: bgShift 7s infinite alternate;;
 }
 @keyframes bgShift {
     0% {
@@ -47,16 +47,20 @@ color: rgb(255, 255, 255);
 
 .welcome-text{
     text-align: center;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    color:#ffffff
+    
 }
 
 .welcome-text h1{
     font-size: 3rem;
     font-weight: bold;
     letter-spacing: 1px;
+    color:#ffffff
 }
 
 .login-box label{
+    color:#ffffff
     display: block;
     text-align: left;
     margin-top: 10px;
@@ -70,6 +74,7 @@ color: rgb(255, 255, 255);
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color:#ffffff
 }
 
 .login-buttons button {
@@ -87,7 +92,7 @@ color: rgb(255, 255, 255);
 }
 
 .login-buttons button:hover{
-    background: #000000;
+    background: #070707;
 }
 .login-buttons {
     display: flex;
