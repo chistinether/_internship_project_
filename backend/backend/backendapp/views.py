@@ -298,10 +298,7 @@ def update_profile(request):
         "email": user.email
     })
 
-#@api_view(['POST'])
-#def send_otp(request):
 
-    # email = request.data.get('email')
 
     # if not email:
 
